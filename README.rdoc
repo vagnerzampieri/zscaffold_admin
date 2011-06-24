@@ -1,3 +1,24 @@
 = ZscaffoldAdmin
 
+NOT READY FOR USE(solving problems with css)
+NOT READY FOR USE(solving problems with css)
+NOT READY FOR USE(solving problems with css)
+NOT READY FOR USE(solving problems with css)
+NOT READY FOR USE(solving problems with css)
+
+Use Rails 3.1.0.rc4(brach => 3-1-stable)
+
+It is a scaffold with configurable layout. Can be used in applications and other Engines.
+
+Install the gem in your Gemfile.
+
+Install files for configuration.
+rails g scaffold_admin:install
+
+Then just generate the scaffold.
+rails g scaffold_admin post name:string title:string enabled:boolean
+
+Option with namespace.
+rails g scaffold_admin blog/post name:string title:string enabled:boolean
+
 This project rocks and uses MIT-LICENSE.
