@@ -15,5 +15,11 @@ Then just generate the scaffold.
 
 Option with namespace.
     rails g scaffold_admin blog/post name:string title:string enabled:boolean
+    
+== Soon it will be done:
+
+Scaffold with option for Ajax.
+Skips
+
 
 This project rocks and uses MIT-LICENSE.
