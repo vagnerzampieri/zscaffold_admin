@@ -13,12 +13,12 @@ It is a scaffold with configurable layout. Can be used in applications and other
 Install the gem in your Gemfile.
 
 Install files for configuration.
-rails g scaffold_admin:install
+    rails g scaffold_admin:install
 
 Then just generate the scaffold.
-rails g scaffold_admin post name:string title:string enabled:boolean
+    rails g scaffold_admin post name:string title:string enabled:boolean
 
 Option with namespace.
-rails g scaffold_admin blog/post name:string title:string enabled:boolean
+    rails g scaffold_admin blog/post name:string title:string enabled:boolean
 
 This project rocks and uses MIT-LICENSE.
