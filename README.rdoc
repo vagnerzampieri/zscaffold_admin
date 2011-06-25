@@ -5,7 +5,7 @@ Use Rails 3.1.0.rc4(brach => 3-1-stable)
 It is a scaffold with configurable layout. Can be used in applications and other Engines.
 
 Install the gem in your Gemfile.
-    gem 'zscaffold_admin'
+    gem 'zscaffold_admin', :git => 'git://github.com/vagnerzampieri/zscaffold_admin.git'
     
 Install files for configuration.
     rails g scaffold_admin:install
