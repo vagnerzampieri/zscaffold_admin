@@ -12,7 +12,7 @@ class <%= plural_class %>Controller < ApplicationController
   end
     
   def show
-    @<%= singular_name %> = <%= class_name %>.find params[:id]
+    @<%= singular_name %> = <%= class_name %>.where(params[:id]).first
     
     respond_with @<%= singular_name %>
   end
@@ -24,7 +24,7 @@ class <%= plural_class %>Controller < ApplicationController
   end
 
   def edit
-    @<%= singular_name %> = <%= class_name %>.find params[:id]
+    @<%= singular_name %> = <%= class_name %>.where(params[:id]).first
     respond_with @<%= singular_name %>
   end
 
@@ -35,25 +35,23 @@ class <%= plural_class %>Controller < ApplicationController
       flash[:notice] = I18n.t :<%= singular_name %>_created
       respond_with @<%= singular_name %>
     else
-      flash[:alert] = I18n.t :<%= singular_name %>_not_created
       render :action => :new
     end
   end
 
   def update
-    @<%= singular_name %> = <%= class_name %>.find params[:id]
+    @<%= singular_name %> = <%= class_name %>.where(params[:id]).first
   
     if @<%= singular_name %>.update_attributes params[:<%= singular_name %>]
       flash[:notice] = I18n.t :<%= singular_name %>_updated
       respond_with @<%= singular_name %>
     else
-      flash[:alert] = I18n.t :<%= singular_name %>_not_updated
       render :action => :edit
     end
   end
 
   def destroy
-    @<%= singular_name %> = <%= class_name %>.find params[:id]
+    @<%= singular_name %> = <%= class_name %>.where(params[:id]).first
     @<%= singular_name %>.destroy
     
     respond_with @<%= singular_name %>

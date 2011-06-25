@@ -30,6 +30,12 @@ module ScaffoldAdmin
 
     end
     
+    def inject_code_helper
+      content = File.open(File.expand_path("../templates/code_application_helper.rb", __FILE__), 'r') {|file| file.read}
+      sentinel = /module ApplicationHelper/
+      inject_into_file "#{Rails.root}/app/helpers/application_helper.rb", "\n#{content}\n", { :after => sentinel, :verbose => false }
+    end
+    
     def array_classes
       %w[controller helper model migration]
     end

@@ -2,7 +2,7 @@
 <div class="module_content">
   <%% if @<%= singular_name %>.errors.any? %>
     <div id="error_explanation">
-      <h2><%%= pluralize(@<%= singular_name %>.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <h4 class='alert_error'><%%= pluralize(@<%= singular_name %>.errors.count, "error") %> prohibited this category from being saved:</h4>
 
       <ul>
       <%% @<%= singular_name %>.errors.full_messages.each do |msg| %>
