@@ -18,22 +18,18 @@ class ScaffoldAdminGenerator < Rails::Generators::Base
       template "controller.rb", "app/controllers/#{namespace_underscore}/#{plural_name}_controller.rb"
       template "helper.rb", "app/helpers/#{namespace_underscore}/#{plural_name}_helper.rb"
       
-      %w[index show edit new].each do |view|
+      array_views.each do |view|
         template "views/#{view}.html.erb", "app/views/#{namespace_underscore}/#{plural_name}/#{view}.html.erb"
       end
-      
-      template "views/_form.html.erb", "app/views/#{namespace_underscore}/#{plural_name}/_form.html.erb"
       
     else
       template "model.rb", "app/models/#{singular_name}.rb"
       template "controller.rb", "app/controllers/#{plural_name}_controller.rb"
       template "helper.rb", "app/helpers/#{plural_name}_helper.rb"
       
-      %w[index show edit new].each do |view|
+      array_views.each do |view|
         template "views/#{view}.html.erb", "app/views/#{plural_name}/#{view}.html.erb"
       end
-      
-      template "views/_form.html.erb", "app/views/#{namespace_underscore}/#{plural_name}/_form.html.erb"
       
     end
     
@@ -47,6 +43,10 @@ class ScaffoldAdminGenerator < Rails::Generators::Base
     else
       template 'migration.rb', "db/migrate/#{migration_number}_create_#{plural_name}.rb"
     end
+  end
+  
+  def array_views
+    %w[edit _form index new show]
   end
 
   def split_scaffold_name
