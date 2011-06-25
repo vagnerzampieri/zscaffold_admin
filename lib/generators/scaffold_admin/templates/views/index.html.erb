@@ -26,7 +26,7 @@
             <%- end -%>
             <td><%%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show)), <%= singular_name %> %></td>
             <td><%%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit)), edit_<%= singular_name %>_path(<%= singular_name %>) %></td>
-            <td><%%= link_to image_tag("/assets/icn_alert_error.png", :alt => I18n.t(:delete), :title => I18n.t(:delete)), <%= singular_name %>, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>
+            <td><%%= button_to I18n.t(:delete), { :action => "destroy", :id => <%= singular_name %>.id }, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>
           </tr>
         <%% end %>
         </tbody>

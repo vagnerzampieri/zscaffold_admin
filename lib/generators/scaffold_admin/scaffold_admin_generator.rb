@@ -1,6 +1,5 @@
 require 'rails/generators/migration'
 require 'rails/generators/generated_attribute'
-require 'rails/generators/base'
 
 class ScaffoldAdminGenerator < Rails::Generators::Base
   include Rails::Generators::Migration
@@ -9,7 +8,7 @@ class ScaffoldAdminGenerator < Rails::Generators::Base
   no_tasks { attr_accessor :scaffold_name, :model_attributes }
   
   argument :scaffold_name, :type => :string, :required => true, :banner => 'Namespace/ModelName'
-  argument :attributes, :type => :array, :default => [], :banner => 'field_name:type' 
+  argument :attributes, :type => :array, :default => [], :banner => 'field_name:type'
   
   def create_templates
     args_attributes
@@ -21,7 +20,7 @@ class ScaffoldAdminGenerator < Rails::Generators::Base
       
       %w[index show edit new].each do |view|
         template "views/#{view}.html.erb", "app/views/#{namespace_underscore}/#{plural_name}/#{view}.html.erb"
-      end      
+      end
       
       template "views/_form.html.erb", "app/views/#{namespace_underscore}/#{plural_name}/_form.html.erb"
       
@@ -42,10 +41,11 @@ class ScaffoldAdminGenerator < Rails::Generators::Base
   end
   
   def create_migration
+    migration_number = Time.now.strftime('%Y%m%d%H%M%S')
     if namespace_name
-      migration_template 'migration.rb', "db/migrate/create_#{namespace_underscore}_#{plural_name}.rb"
+      template 'migration.rb', "db/migrate/#{migration_number}_create_#{namespace_underscore}_#{plural_name}.rb"
     else
-      migration_template 'migration.rb', "db/migrate/create_#{plural_name}.rb"     
+      template 'migration.rb', "db/migrate/#{migration_number}_create_#{plural_name}.rb"
     end
   end
 
@@ -103,19 +103,6 @@ class ScaffoldAdminGenerator < Rails::Generators::Base
   def namespace_underscore
     unless namespace_name.nil?
       namespace_name.underscore
-    end
-  end
-  
-  protected
-  no_tasks do
-    # FIXME: Should be proxied to ActiveRecord::Generators::Base
-    # Implement the required interface for Rails::Generators::Migration.
-    def next_migration_number(dirname) #:nodoc:
-      if ActiveRecord::Base.timestamped_migrations
-        Time.now.utc.strftime("%Y%m%d%H%M%S")
-      else
-        "%.3d" % (current_migration_number(dirname) + 1)
-      end
     end
   end
   

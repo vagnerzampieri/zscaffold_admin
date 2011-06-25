@@ -29,7 +29,7 @@ class <%= plural_class %>Controller < ApplicationController
   end
 
   def create
-    @<%= singular_name %> = <%= class_name %>.new params[:post]
+    @<%= singular_name %> = <%= class_name %>.new params[:<%= singular_name %>]
     
     if @<%= singular_name %>.save
       flash[:notice] = I18n.t :<%= singular_name %>_created
@@ -43,7 +43,7 @@ class <%= plural_class %>Controller < ApplicationController
   def update
     @<%= singular_name %> = <%= class_name %>.find params[:id]
   
-    if @<%= singular_name %>.update_attributes params[:post]
+    if @<%= singular_name %>.update_attributes params[:<%= singular_name %>]
       flash[:notice] = I18n.t :<%= singular_name %>_updated
       respond_with @<%= singular_name %>
     else
