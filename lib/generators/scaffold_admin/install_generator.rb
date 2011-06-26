@@ -27,15 +27,23 @@ module ScaffoldAdmin
       array_images.each do |images|
         copy_file "images/#{images}.png", "app/assets/images/#{images}.png"
       end
-
     end
-    
+
     def inject_code_helper
+      path = IO.readlines("#{Rails.root}/config/routes.rb")
       content = File.open(File.expand_path("../templates/code_application_helper.rb", __FILE__), 'r') {|file| file.read}
       sentinel = /module ApplicationHelper/
-      inject_into_file "#{Rails.root}/app/helpers/application_helper.rb", "\n#{content}\n", { :after => sentinel, :verbose => false }
+      app = /::Application/
+      engine = /::Engine/
+      application = path.first.gsub(/::(.*)/, "").gsub("\n", "").underscore
+      
+      if path.first =~ app
+        inject_into_file "#{Rails.root}/app/helpers/application_helper.rb", "\n#{content}\n", { :after => sentinel, :verbose => false }
+      elsif path.first =~ engine
+        inject_into_file "#{Rails.root}/app/helpers/#{application}/application_helper.rb", "\n#{content}\n", { :after => sentinel, :verbose => false }
+      end      
     end
-    
+      
     def array_classes
       %w[controller helper model migration]
     end
