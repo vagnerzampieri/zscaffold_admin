@@ -8,5 +8,5 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/vagnerzampieri/zscaffold_admin"
   s.description = "It is a scaffold with configurable layout."
   s.files = Dir["lib/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 end
