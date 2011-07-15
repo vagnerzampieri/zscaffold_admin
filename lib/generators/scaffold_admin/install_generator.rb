@@ -35,7 +35,7 @@ module ScaffoldAdmin
       sentinel = /module ApplicationHelper/
       app = /::Application/
       engine = /::Engine/
-      application = path.first.gsub(/::(.*)/, "").gsub("\n", "").underscore
+      application = path.first.gsub(/::(.*)/, "").chomp.underscore
       
       if path.first =~ app
         inject_into_file "#{Rails.root}/app/helpers/application_helper.rb", "\n#{content}\n", { :after => sentinel, :verbose => false }
