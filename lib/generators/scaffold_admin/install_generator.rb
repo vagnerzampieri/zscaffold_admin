@@ -30,7 +30,7 @@ module ScaffoldAdmin
     end
 
     def inject_code_helper
-      path = IO.readlines("#{Rails.root}/config/routes.rb")
+      path = IO.readlines("config/routes.rb")
       content = File.open(File.expand_path("../templates/code_application_helper.rb", __FILE__), 'r') {|file| file.read}
       sentinel = /module ApplicationHelper/
       app = /::Application/
@@ -38,9 +38,9 @@ module ScaffoldAdmin
       application = path.first.gsub(/::(.*)/, "").chomp.underscore
       
       if path.first =~ app
-        inject_into_file "#{Rails.root}/app/helpers/application_helper.rb", "\n#{content}\n", { :after => sentinel, :verbose => false }
+        inject_into_file "app/helpers/application_helper.rb", "\n#{content}\n", { :after => sentinel, :verbose => false }
       elsif path.first =~ engine
-        inject_into_file "#{Rails.root}/app/helpers/#{application}/application_helper.rb", "\n#{content}\n", { :after => sentinel, :verbose => false }
+        inject_into_file "app/helpers/#{application}/application_helper.rb", "\n#{content}\n", { :after => sentinel, :verbose => false }
       end      
     end
       
