@@ -39,9 +39,9 @@ class ScaffoldAdminGenerator < Rails::Generators::Base
   def create_migration
     migration_number = Time.now.strftime('%Y%m%d%H%M%S')
     if namespace_name
-      template 'migration.rb', "db/migrate/#{migration_number}_create_#{namespace_underscore}_#{plural_name}.rb"
+      migration_template "migration.rb", "db/migrate/create_#{namespace_underscore}_#{plural_name}.rb"
     else
-      template 'migration.rb', "db/migrate/#{migration_number}_create_#{plural_name}.rb"
+      migration_template "migration.rb", "db/migrate/create_#{plural_name}.rb"
     end
   end
   
@@ -105,5 +105,15 @@ class ScaffoldAdminGenerator < Rails::Generators::Base
       namespace_name.underscore
     end
   end
+  
+  # FIXME: Should be proxied to ActiveRecord::Generators::Base
+  # Implement the required interface for Rails::Generators::Migration.
+  def self.next_migration_number(dirname) #:nodoc:
+    if ActiveRecord::Base.timestamped_migrations
+      Time.now.utc.strftime("%Y%m%d%H%M%S")
+    else
+      "%.3d" % (current_migration_number(dirname) + 1)
+    end
+   end
   
 end
