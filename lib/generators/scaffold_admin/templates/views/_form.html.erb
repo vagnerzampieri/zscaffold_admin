@@ -14,7 +14,7 @@
   
   <%- model_attributes.each do |attribute| -%>
   <fieldset>
-    <label><b><%%= I18n.t :<%= attribute.name %> %></label></b>
+    <label><b><%%= I18n.t :<%= attribute.name %> %></b></label>
     <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
   </fieldset>
   <%- end -%>
