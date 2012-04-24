@@ -1,26 +1,26 @@
 <%- if namespace_name -%>
 module <%= module_name %>
 <%- end -%>
-class <%= plural_class %>Controller < ApplicationController    
-  
+class <%= plural_class %>Controller < ApplicationController
+
   before_filter :init, :only => [:show, :edit, :update, :destroy]
-  
-  layout 'admin'   
-  respond_to :html, :xml, :js
+
+  layout 'admin'
+  respond_to :html, :json, :js
 
   def index
     @<%= plural_name %> = <%= class_name %>.order 'created_at DESC'
-    
+
     respond_with @<%= plural_name %>
   end
-    
-  def show   
+
+  def show
     respond_with @<%= singular_name %>
   end
 
   def new
     @<%= singular_name %> = <%= class_name %>.new
-    
+
     respond_with @<%= singular_name %>
   end
 
@@ -30,7 +30,7 @@ class <%= plural_class %>Controller < ApplicationController
 
   def create
     @<%= singular_name %> = <%= class_name %>.new params[:<%= singular_name %>]
-    
+
     if @<%= singular_name %>.save
       flash[:notice] = I18n.t :<%= singular_name %>_created
       respond_with @<%= singular_name %>
@@ -39,7 +39,7 @@ class <%= plural_class %>Controller < ApplicationController
     end
   end
 
-  def update 
+  def update
     if @<%= singular_name %>.update_attributes params[:<%= singular_name %>]
       flash[:notice] = I18n.t :<%= singular_name %>_updated
       respond_with @<%= singular_name %>
@@ -50,15 +50,15 @@ class <%= plural_class %>Controller < ApplicationController
 
   def destroy
     @<%= singular_name %>.destroy
-    
+
     respond_with @<%= singular_name %>
   end
-  
+
   def init
-    @<%= singular_name %> = <%= class_name %>.where(:id => params[:id]).first
+    @<%= singular_name %> = <%= class_name %>.find(params[:id])
   end
-    
+
 end
-<%- if namespace_name -%>  
+<%- if namespace_name -%>
 end
 <%- end -%>
