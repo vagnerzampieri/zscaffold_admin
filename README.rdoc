@@ -1,6 +1,6 @@
 = ZscaffoldAdmin
 
-Use Rails 3.1.0.rc4(brach => 3-1-stable)
+Use Rails > 3
 
 It is a scaffold with configurable layout, controllers, models, helpers, etc. It is installed in the app templates to be used in scaffold. Can be used in applications and other Engines.
 
@@ -18,9 +18,8 @@ currently has about Engines and namespace are being repaired.
 
 == Soon it will be done:
 
-Scaffold with option for Ajax.
-
 Skips.
 
+== License
 
 This project rocks and uses MIT-LICENSE.
