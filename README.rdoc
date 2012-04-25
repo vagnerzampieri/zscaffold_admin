@@ -2,17 +2,17 @@
 
 Use Rails 3.1.0.rc4(brach => 3-1-stable)
 
-It is a scaffold with configurable layout. Can be used in applications and other Engines.
+It is a scaffold with configurable layout, controllers, models, helpers, etc. It is installed in the app templates to be used in scaffold. Can be used in applications and other Engines.
 
 Install the gem in your Gemfile.
     gem 'zscaffold_admin', :git => 'git://github.com/vagnerzampieri/zscaffold_admin.git'
-    
+
 Install files for configuration.
     rails g scaffold_admin:install
 
 Then just generate the scaffold.
     rails g scaffold_admin post name:string title:string enabled:boolean
-    
+
 == Bugs:
 currently has about Engines and namespace are being repaired.
 
