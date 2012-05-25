@@ -7,8 +7,8 @@ class ScaffoldAdminGenerator < Rails::Generators::Base
 
   no_tasks { attr_accessor :scaffold_name, :model_attributes }
 
-  argument :scaffold_name, :type => :string, :required => true, :banner => 'Namespace/ModelName'
-  argument :attributes, :type => :array, :default => [], :banner => 'field_name:type'
+  argument :scaffold_name, type: :string, required: true, banner: 'Namespace/ModelName'
+  argument :attributes, type: :array, default: [], banner: 'field_name:type'
 
   def model_attributes_names
     @model_attributes_names = []
