@@ -9,7 +9,9 @@ class ScaffoldAdminGenerator < Rails::Generators::Base
 
   argument :scaffold_name, type: :string, required: true, banner: 'Namespace/ModelName'
   argument :attributes, type: :array, default: [], banner: 'field_name:type'
-
+  #class_option :index, type: :boolean, default: true, desc: "Include index"
+  #puts index
+  #exit
   def model_attributes_names
     @model_attributes_names = []
 
