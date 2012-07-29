@@ -1,40 +1,32 @@
-<article class="module width_3_quarter">
-  <header>
-    <h3 class="tabs_involved"><%%= t :listing_<%= plural_name %> %></h3>
-  </header>
+<div class="page-header">
+  <h2><%%= I18n.t :listing_<%= plural_name %> %> - <%%= link_to I18n.t(:new_<%= singular_name %>), new_<%= singular_name %>_path, class: 'btn btn-success' %></h2>
+</div>
 
-  <div class="tab_container">
-	  <div id="tab1" class="tab_content">
-      <table class="tablesorter" cellspacing="0">
-        <thead>
-          <tr>
-            <th></th>
-            <%- model_attributes.each do |attribute| -%>
-            <th><%%= t :<%= attribute.name %> %></th>
-            <%- end -%>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-        <%% @<%= plural_name %>.each do |<%= singular_name %>| %>
-          <tr>
-            <td></td>
-            <%- model_attributes.each do |attribute| -%>
-            <td><%%= <%= singular_name %>.<%= attribute.name %> %></td>
-            <%- end -%>
-            <td><%%= link_to image_tag("icn_folder.png", alt: t(:show), title: t(:show)), <%= singular_name %> %></td>
-            <td><%%= link_to image_tag("icn_edit_article.png", alt: t(:edit), title: I18n.t(:edit)), edit_<%= singular_name %>_path(<%= singular_name %>) %></td>
-            <td><%%= button_to t(:delete), { action: :destroy, id: <%= singular_name %>.id }, confirm: t(:are_you_sure), method: :delete %></td>
-          </tr>
-        <%% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <%- model_attributes.each do |attribute| -%>
+      <th><%%= t :<%= attribute.name %> %></th>
+      <%- end -%>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <%% @<%= plural_name %>.each do |<%= singular_name %>| %>
+    <tr>
+      <%- model_attributes.each do |attribute| -%>
+      <td><%%= <%= singular_name %>.<%= attribute.name %> %></td>
+      <%- end -%>
+      <td><%%= link_to I18n.t(:show), <%= singular_name %>, class: 'btn' %></td>
+      <td><%%= link_to I18n.t(:edit), edit_<%= singular_name %>_path(<%= singular_name %>), class: 'btn btn-primary' %></td>
+      <td><%%= button_to I18n.t(:delete), { action: :destroy, id: <%= singular_name %>.id }, method: :delete, class: 'btn btn-danger' %></td>
+    </tr>
+  <%% end %>
+  </tbody>
+</table>
+<%%= will_paginate @<%= plural_name %>, previous_label: I18n.t(:previous), next_label: I18n.t(:next) %>
+<br />
 
-  <br />
-
-  <%%= link_to I18n.t(:new_<%= singular_name %>), new_<%= singular_name %>_path %>
-</article>
+<%%= link_to I18n.t(:new_<%= singular_name %>), new_<%= singular_name %>_path, class: 'btn btn-success' %>

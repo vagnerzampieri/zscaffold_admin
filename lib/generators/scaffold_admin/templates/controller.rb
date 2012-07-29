@@ -7,7 +7,7 @@ class <%= plural_class %>Controller < ApplicationController
   respond_to :html, :json
 
   def index
-    @<%= plural_name %> = <%= class_name %>.order 'created_at DESC'
+    @<%= plural_name %> = <%= class_name %>.paginate(page: params[:page], per_page: 10).order('created_at DESC')
 
     respond_with @<%= plural_name %>
   end
@@ -50,9 +50,9 @@ class <%= plural_class %>Controller < ApplicationController
   end
 
   private
-    def get_register(id)
-      <%= class_name %>.find(id)
-    end
+  def get_register(id)
+    <%= class_name %>.find(id)
+  end
 
 end
 <%- if namespace_name -%>

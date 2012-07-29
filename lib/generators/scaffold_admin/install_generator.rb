@@ -7,6 +7,10 @@ module ScaffoldAdmin
     end
 
     def copy_files
+      gem 'will_paginate'
+
+      copy_file "config/initializers/will_paginate.rb", "config/initializers/will_paginate.rb"
+
       array_classes.each do |klass|
         copy_file "#{klass}.rb", "lib/templates/#{klass}.rb"
       end
@@ -15,18 +19,18 @@ module ScaffoldAdmin
         copy_file "views/#{view}.html.erb", "lib/templates/views/#{view}.html.erb"
       end
 
-      copy_file "shared/_menu.html.erb", "app/views/shared/_menu.html.erb"
       copy_file "layouts/admin.html.erb", "app/views/layouts/admin.html.erb"
       copy_file "stylesheets/ie.css", "app/assets/stylesheets/ie.css"
       copy_file "stylesheets/layout.css", "app/assets/stylesheets/layout.css"
+      copy_file "stylesheets/bootstrap-responsive.css", "app/assets/stylesheets/bootstrap-responsive.css"
+      copy_file "stylesheets/bootstrap.css.erb", "app/assets/stylesheets/bootstrap.css.erb"
+      copy_file "stylesheets/docs.css.erb", "app/assets/stylesheets/docs.css.erb"
 
       array_javascripts.each do |js|
         copy_file "javascripts/#{js}.js", "app/assets/javascripts/#{js}.js"
       end
 
-      array_images.each do |images|
-        copy_file "images/#{images}.png", "app/assets/images/#{images}.png"
-      end
+      directory "images/icons", "app/assets/images/icons"
     end
 
     def inject_code_helper
@@ -53,11 +57,7 @@ module ScaffoldAdmin
     end
 
     def array_javascripts
-      %w[hideshow jquery.equalHeight jquery.tablesorter.min jquery-1.5.2.min]
-    end
-
-    def array_images
-      %w[breadcrumb_divider btn_submit btn_submit_2 btn_view_site header_bg header_shadow icn_add_user icn_alert_error icn_alert_info icn_alert_success icn_alert_warning icn_audio icn_categories icn_edit icn_edit_article icn_folder icn_jump_back icn_logout icn_new_article icn_photo icn_profile icn_search icn_security icn_settings icn_tags icn_trash icn_user icn_video icn_view_users module_footer_bg post_message secondary_bar secondary_bar_shadow sidebar sidebar_divider sidebar_shadow table_sorter_header]
+      %w[app bootstrap.min bootswatch html5 jquery-1.7.2.min jquery.easing.1.3 login]
     end
 
   end
