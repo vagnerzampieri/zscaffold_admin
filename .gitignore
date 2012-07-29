@@ -7,4 +7,4 @@ test/dummy/tmp/
 *.swp
 *~
 .rvmrc
-zscaffold_admin*
+zscaffold_admin-*
