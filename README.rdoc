@@ -14,12 +14,13 @@ Install files for configuration.
 Then just generate the scaffold.
     rails g scaffold_admin post name:string title:string enabled:boolean
 
-== Bugs:
-currently has about Engines and namespace are being repaired.
-
-== Soon it will be done:
+== Features:
 
 Skips.
+Layout options to choose from when installing.
+
+== Bugs:
+currently has about Engines and namespace are being repaired.
 
 == License
 
